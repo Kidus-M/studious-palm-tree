@@ -16,14 +16,7 @@ interface EpisodeCardProps {
 }
 
 export default function EpisodeCard({
-  id,
-  episodeNumber,
-  titleEn,
-  titleAm,
-  thumbnailUrl,
-  durationSec,
-  isFree,
-  isUnlocked,
+  id, episodeNumber, titleEn, titleAm, thumbnailUrl, durationSec, isFree, isUnlocked,
 }: EpisodeCardProps) {
   const locale = useLocale();
   const t = useTranslations('episodes');
@@ -32,115 +25,70 @@ export default function EpisodeCard({
   const canWatch = isFree || isUnlocked;
 
   return (
-    <div className="card-hover" style={{
-      position: 'relative',
-      borderRadius: '12px',
-      overflow: 'hidden',
-      background: 'var(--color-surface)',
-      border: '1px solid rgba(212, 168, 67, 0.1)',
+    <div className="float-card" style={{
+      position: 'relative', background: 'var(--color-surface)',
+      border: '1px solid var(--color-border-light)',
+      boxShadow: '0 2px 20px rgba(59,35,20,0.04)',
     }}>
-      {/* Thumbnail */}
       <div style={{
-        position: 'relative',
-        aspectRatio: '16/9',
-        background: thumbnailUrl
-          ? `url(${thumbnailUrl}) center/cover`
-          : 'linear-gradient(135deg, var(--color-surface), var(--color-brown-deep))',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        position: 'relative', aspectRatio: '16/9',
+        background: thumbnailUrl ? `url(${thumbnailUrl}) center/cover`
+          : 'linear-gradient(135deg, var(--color-background-warm), var(--color-border))',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}>
-        {/* Episode Number Overlay */}
         <div style={{
-          position: 'absolute',
-          top: '0.75rem',
-          left: '0.75rem',
-          background: 'rgba(0,0,0,0.7)',
-          padding: '0.25rem 0.5rem',
-          borderRadius: '4px',
-          fontSize: '0.75rem',
-          fontWeight: 600,
-          color: 'var(--color-ivory-muted)',
+          position: 'absolute', top: '0.75rem', left: '0.75rem',
+          background: 'var(--color-accent)', color: '#FFF',
+          padding: '0.25rem 0.65rem', borderRadius: '8px', fontSize: '0.75rem', fontWeight: 700,
         }}>
           {t('episode')} {episodeNumber}
         </div>
 
-        {/* Free Badge */}
         {isFree && (
           <div style={{
-            position: 'absolute',
-            top: '0.75rem',
-            right: '0.75rem',
-            background: 'linear-gradient(135deg, #4A6741, #3A5233)',
-            padding: '0.25rem 0.6rem',
-            borderRadius: '4px',
-            fontSize: '0.7rem',
-            fontWeight: 700,
-            color: '#fff',
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-          }}>
-            {t('free')}
-          </div>
+            position: 'absolute', top: '0.75rem', right: '0.75rem',
+            background: 'linear-gradient(135deg, #4A6741, #5C8253)', color: '#FFF',
+            padding: '0.25rem 0.7rem', borderRadius: '8px', fontSize: '0.7rem', fontWeight: 700,
+            textTransform: 'uppercase', letterSpacing: '0.05em',
+          }}>{t('free')}</div>
         )}
 
-        {/* Duration */}
         <div style={{
-          position: 'absolute',
-          bottom: '0.75rem',
-          right: '0.75rem',
-          background: 'rgba(0,0,0,0.7)',
-          padding: '0.2rem 0.5rem',
-          borderRadius: '4px',
-          fontSize: '0.75rem',
-          color: 'var(--color-ivory-muted)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.3rem',
+          position: 'absolute', bottom: '0.75rem', right: '0.75rem',
+          background: 'rgba(0,0,0,0.6)', color: '#FFF',
+          padding: '0.2rem 0.55rem', borderRadius: '6px', fontSize: '0.75rem',
+          display: 'flex', alignItems: 'center', gap: '0.3rem',
         }}>
-          <Clock size={12} />
-          {minutes} {t('minutes')}
+          <Clock size={12} /> {minutes} {t('minutes')}
         </div>
 
-        {/* Lock Overlay */}
         {!canWatch && (
-          <div className="lock-overlay" style={{ borderRadius: '12px 12px 0 0' }}>
+          <div className="lock-overlay" style={{ borderRadius: '20px 20px 0 0' }}>
             <div style={{ textAlign: 'center' }}>
-              <Lock size={28} style={{ color: 'var(--color-primary)', marginBottom: '0.5rem' }} />
-              <p style={{ fontSize: '0.8rem', color: 'var(--color-muted)' }}>{t('locked')}</p>
+              <Lock size={24} style={{ color: 'var(--color-primary)', marginBottom: '0.4rem' }} />
+              <p style={{ fontSize: '0.8rem', color: 'var(--color-muted)', fontWeight: 500 }}>{t('locked')}</p>
             </div>
           </div>
         )}
 
-        {/* Play Button */}
         {canWatch && (
           <Link href={`/watch/${id}`} style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '50%',
-            background: 'rgba(212, 168, 67, 0.9)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'all 0.3s ease',
-            zIndex: 2,
+            width: '50px', height: '50px', borderRadius: '50%',
+            background: 'var(--color-accent)', display: 'flex',
+            alignItems: 'center', justifyContent: 'center', zIndex: 2,
+            transition: 'all 0.4s cubic-bezier(0.23,1,0.32,1)',
+            boxShadow: '0 8px 30px rgba(59,35,20,0.2)',
           }}>
-            <Play size={20} fill="#0D0907" color="#0D0907" />
+            <Play size={18} fill="#FFF" color="#FFF" />
           </Link>
         )}
       </div>
 
-      {/* Info */}
-      <div style={{ padding: '1rem' }}>
+      <div style={{ padding: '1.15rem' }}>
         <h3 style={{
           fontFamily: locale === 'am' ? 'var(--font-ethiopic)' : 'var(--font-heading)',
-          fontSize: '1rem',
-          fontWeight: 600,
-          color: 'var(--color-ivory)',
-          marginBottom: '0.25rem',
-        }}>
-          {title}
-        </h3>
+          fontSize: '1rem', fontWeight: 600, color: 'var(--color-foreground)',
+        }}>{title}</h3>
       </div>
     </div>
   );

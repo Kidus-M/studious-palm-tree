@@ -13,12 +13,21 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isHeroSection, setIsHeroSection] = useState(true);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+      setIsHeroSection(window.scrollY < window.innerHeight - 100);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const isDark = isHeroSection && pathname === '/';
+  const textColor = isDark ? '#F5F0E8' : 'var(--color-foreground)';
+  const activeColor = isDark ? '#D4A843' : 'var(--color-primary)';
+  const mutedColor = isDark ? 'rgba(245,240,232,0.6)' : 'var(--color-muted)';
 
   const navLinks = [
     { href: '/', label: t('home') },
@@ -28,164 +37,79 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        padding: isScrolled ? '0.75rem 0' : '1.25rem 0',
-        background: isScrolled ? 'rgba(13, 9, 7, 0.9)' : 'transparent',
-        backdropFilter: isScrolled ? 'blur(20px)' : 'none',
-        borderBottom: isScrolled ? '1px solid rgba(212, 168, 67, 0.1)' : 'none',
-        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-      }}
-    >
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
+      padding: isScrolled ? '0.6rem 0' : '1.25rem 0',
+      background: isScrolled ? 'rgba(250,250,248,0.85)' : 'transparent',
+      backdropFilter: isScrolled ? 'blur(20px)' : 'none',
+      borderBottom: isScrolled ? '1px solid var(--color-border-light)' : 'none',
+      transition: 'all 0.5s cubic-bezier(0.23,1,0.32,1)',
+    }}>
       <div className="section-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* Logo */}
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
           <div style={{
-            width: '36px',
-            height: '36px',
-            background: 'linear-gradient(135deg, #D4A843, #B8912E)',
-            borderRadius: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '1.1rem',
-            fontWeight: 800,
-            color: '#0D0907',
-            fontFamily: 'var(--font-heading)',
-          }}>
-            SP
-          </div>
+            width: '38px', height: '38px',
+            background: isDark ? 'linear-gradient(135deg, #D4A843, #B8912E)' : 'var(--color-accent)',
+            borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '1rem', fontWeight: 800, color: '#FFF', fontFamily: 'var(--font-heading)',
+            transition: 'all 0.4s ease',
+          }}>SP</div>
           <span style={{
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 700,
-            fontSize: '1.25rem',
-            color: 'var(--color-ivory)',
-          }}>
-            Studio Palm
-          </span>
+            fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.2rem', color: textColor,
+            transition: 'color 0.4s ease',
+          }}>Studio Palm</span>
         </Link>
 
-        {/* Desktop Nav Links */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '2rem',
-        }}
-          className="desktop-nav"
-        >
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="desktop-nav">
+          <div style={{ display: 'flex', gap: '1.75rem' }}>
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                style={{
-                  textDecoration: 'none',
-                  color: pathname === link.href ? 'var(--color-primary)' : 'var(--color-ivory-muted)',
-                  fontWeight: 500,
-                  fontSize: '0.95rem',
-                  transition: 'color 0.3s ease',
-                  fontFamily: 'var(--font-body)',
-                }}
-              >
-                {link.label}
-              </Link>
+              <Link key={link.href} href={link.href} style={{
+                textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem',
+                color: pathname === link.href ? activeColor : mutedColor,
+                transition: 'color 0.3s ease',
+              }}>{link.label}</Link>
             ))}
           </div>
-
           <LanguageToggle />
-
-          {/* Auth Buttons */}
           {session ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <span style={{ color: 'var(--color-muted)', fontSize: '0.875rem' }}>
-                {session.user.name}
-              </span>
-              <button
-                onClick={() => signOut()}
-                className="btn-secondary"
-                style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}
-              >
-                {t('logout')}
-              </button>
+              <span style={{ color: mutedColor, fontSize: '0.85rem' }}>{session.user.name}</span>
+              <button onClick={() => signOut()} className="btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}>{t('logout')}</button>
             </div>
           ) : (
             <div style={{ display: 'flex', gap: '0.75rem' }}>
-              <Link href="/login" className="btn-secondary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.875rem' }}>
-                {t('login')}
-              </Link>
-              <Link href="/register" className="btn-primary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.875rem' }}>
-                {t('register')}
-              </Link>
+              <Link href="/login" className="btn-secondary" style={{ padding: '0.55rem 1.35rem', fontSize: '0.85rem' }}>{t('login')}</Link>
+              <Link href="/register" className="btn-primary" style={{ padding: '0.55rem 1.35rem', fontSize: '0.85rem' }}>{t('register')}</Link>
             </div>
           )}
         </div>
 
-        {/* Mobile Hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="mobile-toggle"
-          style={{
-            display: 'none',
-            background: 'none',
-            border: 'none',
-            color: 'var(--color-ivory)',
-            cursor: 'pointer',
-          }}
-        >
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="mobile-toggle" style={{
+          display: 'none', background: 'none', border: 'none', color: textColor, cursor: 'pointer',
+        }}>
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
         <div style={{
-          position: 'absolute',
-          top: '100%',
-          left: 0,
-          right: 0,
-          background: 'rgba(13, 9, 7, 0.95)',
-          backdropFilter: 'blur(20px)',
-          padding: '1.5rem',
-          borderBottom: '1px solid rgba(212, 168, 67, 0.1)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
+          position: 'absolute', top: '100%', left: 0, right: 0,
+          background: 'rgba(250,250,248,0.97)', backdropFilter: 'blur(20px)',
+          padding: '1.5rem 2rem', borderBottom: '1px solid var(--color-border)',
+          display: 'flex', flexDirection: 'column', gap: '1rem',
         }}>
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              style={{
-                textDecoration: 'none',
-                color: pathname === link.href ? 'var(--color-primary)' : 'var(--color-ivory-muted)',
-                fontWeight: 500,
-                fontSize: '1.1rem',
-                padding: '0.5rem 0',
-              }}
-            >
-              {link.label}
-            </Link>
+            <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} style={{
+              textDecoration: 'none', color: pathname === link.href ? 'var(--color-primary)' : 'var(--color-foreground-soft)',
+              fontWeight: 500, fontSize: '1.05rem', padding: '0.4rem 0',
+            }}>{link.label}</Link>
           ))}
-          <div style={{ borderTop: '1px solid rgba(212, 168, 67, 0.1)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <LanguageToggle />
-            {session ? (
-              <button onClick={() => signOut()} className="btn-secondary" style={{ width: '100%' }}>
-                {t('logout')}
-              </button>
-            ) : (
+            {!session && (
               <>
-                <Link href="/login" className="btn-secondary" style={{ textAlign: 'center', width: '100%' }}>
-                  {t('login')}
-                </Link>
-                <Link href="/register" className="btn-primary" style={{ textAlign: 'center', width: '100%' }}>
-                  {t('register')}
-                </Link>
+                <Link href="/login" className="btn-secondary" style={{ textAlign: 'center' }}>{t('login')}</Link>
+                <Link href="/register" className="btn-primary" style={{ textAlign: 'center' }}>{t('register')}</Link>
               </>
             )}
           </div>

@@ -18,37 +18,55 @@ export default function PricingCard({
   name, price, currency, description, features, cta, popular, isHighlighted, onSelect,
 }: PricingCardProps) {
   return (
-    <div className="card-hover" style={{
-      position: 'relative', borderRadius: '16px', overflow: 'hidden',
-      background: isHighlighted ? 'linear-gradient(180deg, rgba(212,168,67,0.08), rgba(212,168,67,0.02))' : 'var(--color-surface)',
-      border: isHighlighted ? '2px solid var(--color-primary)' : '1px solid rgba(212,168,67,0.1)',
-      padding: '2rem', display: 'flex', flexDirection: 'column',
+    <div className={isHighlighted ? '' : 'glass-card'} style={{
+      position: 'relative', borderRadius: '24px', overflow: 'hidden',
+      padding: isHighlighted ? '2.5rem' : '2rem',
+      background: isHighlighted ? 'var(--color-accent)' : undefined,
+      color: isHighlighted ? '#F5F0E8' : 'var(--color-foreground)',
+      display: 'flex', flexDirection: 'column',
       transform: isHighlighted ? 'scale(1.05)' : undefined,
+      transition: 'all 0.5s cubic-bezier(0.23,1,0.32,1)',
+      boxShadow: isHighlighted ? '0 30px 80px rgba(59,35,20,0.2)' : undefined,
     }}>
       {popular && (
         <div style={{
-          position: 'absolute', top: '1rem', right: '-2rem',
-          background: 'linear-gradient(135deg, #D4A843, #B8912E)',
-          color: '#0D0907', fontSize: '0.7rem', fontWeight: 700,
-          padding: '0.3rem 2.5rem', transform: 'rotate(45deg)',
-          textTransform: 'uppercase', letterSpacing: '0.05em',
+          position: 'absolute', top: '1.25rem', right: '-2.5rem',
+          background: 'linear-gradient(135deg, #D4A843, #C49B2A)', color: '#0D0907',
+          fontSize: '0.65rem', fontWeight: 800, padding: '0.35rem 3rem',
+          transform: 'rotate(45deg)', textTransform: 'uppercase', letterSpacing: '0.08em',
         }}>{popular}</div>
       )}
-      <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-ivory)', marginBottom: '0.5rem' }}>{name}</h3>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.5rem' }}>
-        <span className="gold-text" style={{ fontSize: '2.5rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>{price}</span>
-        <span style={{ color: 'var(--color-muted)', fontSize: '0.9rem' }}>{currency}</span>
+      <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', fontWeight: 700, marginBottom: '0.75rem' }}>{name}</h3>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.3rem', marginBottom: '0.5rem' }}>
+        <span style={{
+          fontSize: '3rem', fontWeight: 800, fontFamily: 'var(--font-heading)', lineHeight: 1,
+          color: isHighlighted ? '#D4A843' : undefined,
+          ...(isHighlighted ? {} : { background: 'linear-gradient(135deg, #6B4F0E, #8B6914)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }),
+        }}>{price}</span>
+        <span style={{ color: isHighlighted ? 'rgba(245,240,232,0.6)' : 'var(--color-muted)', fontSize: '0.9rem' }}>{currency}</span>
       </div>
-      <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>{description}</p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem', flex: 1 }}>
+      <p style={{ color: isHighlighted ? 'rgba(245,240,232,0.7)' : 'var(--color-muted)', fontSize: '0.9rem', marginBottom: '2rem', lineHeight: 1.6 }}>{description}</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2.5rem', flex: 1 }}>
         {features.map((f, i) => (
-          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Check size={16} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
-            <span style={{ fontSize: '0.875rem', color: 'var(--color-ivory-muted)' }}>{f}</span>
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <div style={{
+              width: '20px', height: '20px', borderRadius: '50%', flexShrink: 0,
+              background: isHighlighted ? 'rgba(212,168,67,0.2)' : 'var(--color-background-warm)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <Check size={12} style={{ color: isHighlighted ? '#D4A843' : 'var(--color-primary)' }} />
+            </div>
+            <span style={{ fontSize: '0.9rem', color: isHighlighted ? 'rgba(245,240,232,0.9)' : 'var(--color-foreground-soft)' }}>{f}</span>
           </div>
         ))}
       </div>
-      <button onClick={onSelect} className={isHighlighted ? 'btn-primary' : 'btn-secondary'} style={{ width: '100%' }}>{cta}</button>
+      <button onClick={onSelect} style={{
+        width: '100%', padding: '1rem', borderRadius: '100px', fontFamily: 'var(--font-heading)',
+        fontWeight: 700, fontSize: '0.95rem', cursor: 'pointer', border: 'none',
+        background: isHighlighted ? 'linear-gradient(135deg, #D4A843, #C49B2A)' : 'var(--color-accent)',
+        color: isHighlighted ? '#0D0907' : '#FFFFFF',
+        transition: 'all 0.4s cubic-bezier(0.23,1,0.32,1)',
+      }}>{cta}</button>
     </div>
   );
 }
