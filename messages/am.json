@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "home": "መነሻ",
+    "cast": "ተዋንያን",
+    "trailer": "ማስተዋወቂያ",
+    "subscribe": "ተመዝገብ",
+    "login": "ግባ",
+    "register": "ተመዝገብ",
+    "logout": "ውጣ",
+    "watchNow": "አሁን ተመልከት",
+    "language": "English"
+  },
+  "hero": {
+    "title": "የፍቅር፣ የውርስ እና የጽናት ታሪክ",
+    "titleAm": "A Story of Love, Legacy & Resilience",
+    "subtitle": "በ1990ዎቹ ኢትዮጵያ — በለውጥ ዘመን ውስጥ ያለ ሲኒማዊ ጉዞ",
+    "cta": "መመልከት ጀምር",
+    "ctaTrailer": "ማስተዋወቂያ ተመልከት"
+  },
+  "about": {
+    "sectionTitle": "ስለ ተከታታይ ድራማው",
+    "era": "1990ዎቹ ኢትዮጵያ",
+    "synopsis": "በ1990ዎቹ ኢትዮጵያ ውስጥ ያሉ ህያው ጎዳናዎች እና ውስብስብ ህይወቶች ውስጥ ይጓዙ። ይህ አዲስ ተከታታይ ድራማ በኢትዮጵያ ታላቅ የለውጥ ዘመን ውስጥ ፍቅርን፣ ቤተሰብን እና ማንነትን የሚዳስስ ትውልድ ውበት፣ ትግል እና የማይናወጥ መንፈስ ያሳያል።",
+    "genre": {
+      "drama": "ድራማ",
+      "historical": "ታሪካዊ",
+      "romance": "ፍቅር"
+    }
+  },
+  "trailer": {
+    "sectionTitle": "ኦፊሴላዊ ማስተዋወቂያ",
+    "subtitle": "የሚጠብቅዎን ዓለም ቅኝት ያድርጉ",
+    "pageTitle": "ማስተዋወቂያውን ተመልከት",
+    "pageSubtitle": "ለዚህ አዲስ ተከታታይ ድራማ የመጀመሪያ እይታ ያግኙ",
+    "behindScenes": "ከመድረክ ጀርባ"
+  },
+  "cast": {
+    "sectionTitle": "ተዋንያኑን ይወቁ",
+    "subtitle": "ይህንን ታሪክ ህያው የሚያደርጉ ተሰጥኦ ያላቸው ፊቶች",
+    "pageTitle": "ተዋንያን",
+    "pageSubtitle": "ድንቅ የሆኑትን ተዋንያን ይወቁ",
+    "viewAll": "ሁሉንም ተዋንያን ይመልከቱ",
+    "as": "በ"
+  },
+  "episodes": {
+    "sectionTitle": "ክፍሎች",
+    "subtitle": "ወቅት 1",
+    "episode": "ክፍል",
+    "free": "ነፃ",
+    "locked": "ለመመልከት ተመዝገብ",
+    "minutes": "ደቂቃ",
+    "watchNow": "አሁን ተመልከት"
+  },
+  "pricing": {
+    "sectionTitle": "ዕቅድዎን ይምረጡ",
+    "subtitle": "ዛሬ መመልከት ይጀምሩ — ለእርስዎ የሚስማማውን ዕቅድ ይምረጡ",
+    "free": {
+      "name": "ነፃ",
+      "price": "0",
+      "currency": "ብር",
+      "description": "የተከታታይ ድራማውን ጣዕም ያግኙ",
+      "features": [
+        "ኦፊሴላዊ ማስተዋወቂያ ይመልከቱ",
+        "የመጀመሪያ ክፍል ያግኙ",
+        "ተዋንያኑን ይወቁ"
+      ],
+      "cta": "ይጀምሩ"
+    },
+    "episode": {
+      "name": "በክፍል",
+      "price": "49",
+      "currency": "ብር",
+      "description": "የተለየ ክፍል ይክፈቱ",
+      "features": [
+        "ማንኛውንም ክፍል ይምረጡ",
+        "HD ጥራት ያለው ስትሪሚንግ",
+        "በማንኛውም ጊዜ ይመልከቱ",
+        "ንዑስ ጽሁፎች ተካትተዋል"
+      ],
+      "cta": "ክፍል ይግዙ"
+    },
+    "season": {
+      "name": "ሙሉ ወቅት",
+      "price": "299",
+      "currency": "ብር",
+      "description": "ሙሉ ተሞክሮ",
+      "features": [
+        "ሁሉም ክፍሎች ተከፍተዋል",
+        "HD ጥራት ያለው ስትሪሚንግ",
+        "ለአዳዲስ ክፍሎች ቀድሞ ይድረሱ",
+        "ከመድረክ ጀርባ ይዘት",
+        "ንዑስ ጽሁፎች ተካትተዋል"
+      ],
+      "cta": "ሙሉ ወቅት ያግኙ",
+      "popular": "በጣም ተወዳጅ"
+    }
+  },
+  "auth": {
+    "loginTitle": "እንኳን ደህና መጡ",
+    "loginSubtitle": "መመልከት ለመቀጠል ይግቡ",
+    "registerTitle": "ይቀላቀሉን",
+    "registerSubtitle": "መለያዎን ይፍጠሩ እና ስትሪሚንግ ይጀምሩ",
+    "email": "ኢሜይል",
+    "password": "የይለፍ ቃል",
+    "confirmPassword": "የይለፍ ቃል ያረጋግጡ",
+    "name": "ሙሉ ስም",
+    "phone": "ስልክ ቁጥር",
+    "loginBtn": "ግባ",
+    "registerBtn": "መለያ ፍጠር",
+    "noAccount": "መለያ የለህም?",
+    "hasAccount": "መለያ አለህ?",
+    "forgotPassword": "የይለፍ ቃልህን ረሳህ?"
+  },
+  "watch": {
+    "accessDenied": "ዳግም ይሞክሩ",
+    "accessDeniedMsg": "ይህን ክፍል ለመመልከት ንቁ ምዝገባ ያስፈልግዎታል።",
+    "subscribeCta": "አሁን ተመዝገብ",
+    "nextEpisode": "ቀጣይ ክፍል",
+    "prevEpisode": "ቀዳሚ ክፍል"
+  },
+  "footer": {
+    "tagline": "በ1990ዎቹ ኢትዮጵያ ውስጥ ሲኒማዊ ጉዞ",
+    "links": "ፈጣን ማገናኛዎች",
+    "legal": "ህጋዊ",
+    "privacy": "የግላዊነት ፖሊሲ",
+    "terms": "የአገልግሎት ውል",
+    "contact": "ያግኙን",
+    "copyright": "መብቱ በሕግ የተጠበቀ ነው።"
+  }
+}

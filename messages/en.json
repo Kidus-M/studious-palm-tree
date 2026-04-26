@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "home": "Home",
+    "cast": "Cast",
+    "trailer": "Trailer",
+    "subscribe": "Subscribe",
+    "login": "Sign In",
+    "register": "Sign Up",
+    "logout": "Sign Out",
+    "watchNow": "Watch Now",
+    "language": "አማርኛ"
+  },
+  "hero": {
+    "title": "A Story of Love, Legacy & Resilience",
+    "titleAm": "የፍቅር፣ የውርስ እና የጽናት ታሪክ",
+    "subtitle": "Set in 1990s Ethiopia — a cinematic journey through a transformative era",
+    "cta": "Start Watching",
+    "ctaTrailer": "Watch Trailer"
+  },
+  "about": {
+    "sectionTitle": "About the Series",
+    "era": "1990s Ethiopia",
+    "synopsis": "Journey through the vibrant streets and complex lives of 1990s Ethiopia. This groundbreaking series captures the beauty, struggle, and unwavering spirit of a generation navigating love, family, and identity during one of Ethiopia's most transformative decades.",
+    "genre": {
+      "drama": "Drama",
+      "historical": "Historical",
+      "romance": "Romance"
+    }
+  },
+  "trailer": {
+    "sectionTitle": "Official Trailer",
+    "subtitle": "Get a glimpse into the world that awaits",
+    "pageTitle": "Watch the Trailer",
+    "pageSubtitle": "Experience the first look at this groundbreaking series",
+    "behindScenes": "Behind the Scenes"
+  },
+  "cast": {
+    "sectionTitle": "Meet the Cast",
+    "subtitle": "The talented faces bringing this story to life",
+    "pageTitle": "The Cast",
+    "pageSubtitle": "Get to know the incredible ensemble cast",
+    "viewAll": "View All Cast",
+    "as": "as"
+  },
+  "episodes": {
+    "sectionTitle": "Episodes",
+    "subtitle": "Season 1",
+    "episode": "Episode",
+    "free": "FREE",
+    "locked": "Subscribe to Watch",
+    "minutes": "min",
+    "watchNow": "Watch Now"
+  },
+  "pricing": {
+    "sectionTitle": "Choose Your Plan",
+    "subtitle": "Start watching today — choose the plan that works for you",
+    "free": {
+      "name": "Free",
+      "price": "0",
+      "currency": "ETB",
+      "description": "Get a taste of the series",
+      "features": [
+        "Watch the official trailer",
+        "Access the first episode",
+        "Meet the cast"
+      ],
+      "cta": "Get Started"
+    },
+    "episode": {
+      "name": "Per Episode",
+      "price": "49",
+      "currency": "ETB",
+      "description": "Unlock individual episodes",
+      "features": [
+        "Choose any episode",
+        "HD streaming quality",
+        "Watch anytime, anywhere",
+        "Subtitles included"
+      ],
+      "cta": "Buy Episode"
+    },
+    "season": {
+      "name": "Full Season",
+      "price": "299",
+      "currency": "ETB",
+      "description": "The complete experience",
+      "features": [
+        "All episodes unlocked",
+        "HD streaming quality",
+        "Early access to new episodes",
+        "Behind-the-scenes content",
+        "Subtitles included"
+      ],
+      "cta": "Get Full Season",
+      "popular": "Most Popular"
+    }
+  },
+  "auth": {
+    "loginTitle": "Welcome Back",
+    "loginSubtitle": "Sign in to continue watching",
+    "registerTitle": "Join Us",
+    "registerSubtitle": "Create your account and start streaming",
+    "email": "Email Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "loginBtn": "Sign In",
+    "registerBtn": "Create Account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "forgotPassword": "Forgot your password?"
+  },
+  "watch": {
+    "accessDenied": "Access Denied",
+    "accessDeniedMsg": "You need an active subscription to watch this episode.",
+    "subscribeCta": "Subscribe Now",
+    "nextEpisode": "Next Episode",
+    "prevEpisode": "Previous Episode"
+  },
+  "footer": {
+    "tagline": "A cinematic journey through 1990s Ethiopia",
+    "links": "Quick Links",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact",
+    "copyright": "All rights reserved."
+  }
+}

@@ -1,0 +1,158 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Better Auth Required Models ────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  phone         String?
+  locale        String    @default("en")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  sessions      Session[]
+  accounts      Account[]
+  subscriptions Subscription[]
+  payments      Payment[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("verification")
+}
+
+// ─── Application Models ─────────────────────────────────────────────────────
+
+model Subscription {
+  id        String             @id @default(cuid())
+  userId    String
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan      SubscriptionPlan
+  status    SubscriptionStatus @default(ACTIVE)
+  episodeId String?            // Only for PER_EPISODE plans
+  expiresAt DateTime?
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  @@map("subscription")
+}
+
+model Episode {
+  id            String   @id @default(cuid())
+  seasonNumber  Int      @default(1)
+  episodeNumber Int
+  titleEn       String
+  titleAm       String
+  synopsisEn    String?
+  synopsisAm    String?
+  videoUrl      String   // Internal path — never exposed to client
+  thumbnailUrl  String?
+  durationSec   Int      @default(0)
+  isFree        Boolean  @default(false)
+  releaseDate   DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([seasonNumber, episodeNumber])
+  @@map("episode")
+}
+
+model Payment {
+  id        String        @id @default(cuid())
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chapaRef  String        @unique
+  amount    Float
+  currency  String        @default("ETB")
+  status    PaymentStatus @default(PENDING)
+  plan      SubscriptionPlan
+  episodeId String?       // For per-episode purchases
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@map("payment")
+}
+
+model CastMember {
+  id       String  @id @default(cuid())
+  nameEn   String
+  nameAm   String
+  roleEn   String  // Character name
+  roleAm   String
+  photoUrl String?
+  bioEn    String?
+  bioAm    String?
+  order    Int     @default(0) // Display order
+
+  @@map("cast_member")
+}
+
+// ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum SubscriptionPlan {
+  FREE
+  PER_EPISODE
+  FULL_SEASON
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  EXPIRED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
